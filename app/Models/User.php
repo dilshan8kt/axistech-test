@@ -16,6 +16,12 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Models\Course')->withPivot('course_id');
     }
 
+    public function getNameAttribute($value){
+        if(!$this->isAdmin){
+            return $value .' (Points '. $this->courses()->count().')';
+        }
+        return $value;
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -47,7 +53,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function points(){
-        return $this->courses()->count();
-    }
+ 
+    
 }

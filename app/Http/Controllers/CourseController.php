@@ -30,9 +30,9 @@ class CourseController extends Controller
     public function index()
     {
         if(Auth::user()->isAdmin){
-            $courses = Course::with('users')->get();
+            $courses = Course::with('users')->paginate(10);
         }else{
-            $courses = Auth::user()->courses;
+            $courses = Auth::user()->courses->paginate(10);
         }
         return view('courses.courses',compact('courses'));
     }
@@ -56,7 +56,6 @@ class CourseController extends Controller
     public function store(StoredCourse $request)
     {
         $validated = $request->validated();
-        // dd($validated);
 
         $course = new Course();
         $course->title          = $request->title;
@@ -98,8 +97,9 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoredCourse $request, $id)
     {
+        $validated = $request->validated();
         $course = Course::findOrFail($id);
         $course->title          = $request->title;
         $course->description          = $request->description;

@@ -34,14 +34,13 @@
                     <!-- Left Side Of Navbar -->
 
                     @auth
-                    <li class="navbar-brand"><a href="{{ route('home') }}">Home</a></li>
-                    @if (Auth::user()->isAdmin)
-                    <ul class="navbar-nav mr-auto">
-                        <li class="navbar-brand"><a href="{{ route('courses.index') }}">Courses</a></li>
-                        <li class="navbar-brand"><a href="{{ route('users.index') }}">Users</a></li>
-                    </ul>
-                        
-                    @endif                    
+                        <li class="navbar-brand"><a href="{{ route('home') }}">Home</a></li>
+                        @if (Auth::user()->isAdmin)
+                            <ul class="navbar-nav mr-auto">
+                                <li class="navbar-brand"><a href="{{ route('courses.index') }}">Courses</a></li>
+                                <li class="navbar-brand"><a href="{{ route('users.index') }}">Users</a></li>
+                            </ul>
+                        @endif                    
                         
                     @endauth
 

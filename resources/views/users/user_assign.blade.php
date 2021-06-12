@@ -11,14 +11,13 @@
 
                 <div class="card-body">
 
-                    <div style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-                        transition: 0.3s;">
-                            <div style="padding: 2px 16px;">
-                              <h4><b>{{ $user->name }}</b></h4>
-                              <p>{{ $user->email }}</p>
-                            </div>
-                          </div>
-                          <br>
+                    <div style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);transition: 0.3s;">
+                        <div style="padding: 2px 16px;">
+                            <h4><b>{{ $user->name }}</b></h4>
+                            <p>{{ $user->email }}</p>
+                        </div>
+                    </div>
+                    <br>
 
                     <form action="{{ route('users.update',$user->id) }}" method="post">
                         @csrf
@@ -26,12 +25,10 @@
                         
                         @foreach ($courses as $course)
                             <address>
-                                <input name="courses[]" type="checkbox" value="{{ $course->id }}"  > {{$course->title}}
+                                <input name="courses[]" type="checkbox" value="{{ $course->id }}"  {{ $course->users->contains($user->id)?'checked':'' }}> {{$course->title}}
                             </address>
                         @endforeach
-
-
-                          <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary float-right">Assign</button>
                     </form>
                 </div>
             </div>

@@ -16,7 +16,7 @@
 
                               @if (Auth::user()->isAdmin)
                                 @foreach ($course->users as $user)
-                                    <li><b>{{ $user->name.' ('.$user->points().')' }}</b></li>
+                                    <li><b>{{ $user->name }}</b></li>
                                 @endforeach
                                   
                               @endif

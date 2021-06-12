@@ -29,7 +29,7 @@
                                     {{ $user->email }}
                                 </td>
                                 <td>
-                                    {{ $user->points() }}
+                                    {{ $user->courses->count() }}
                                 </td>
                                 <td>
                                         
